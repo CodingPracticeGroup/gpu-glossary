@@ -1,0 +1,92 @@
+---
+// 构建期从内容源文件读取复核状态，渲染统计与按分组的明细表。
+// props: summaryOnly?: boolean —— 只渲染统计条（用于首页）。
+import fs from 'node:fs'
+import path from 'node:path'
+import sidebarData from '../data/sidebar.json'
+
+interface Entry { label: string; slug: string; status: string; reviewer?: string }
+interface Group { label: string; entries: Entry[] }
+
+function readStatus(slug: string): { status: string; reviewer?: string } {
+  const file = path.join('src/content/docs', `${slug}.md`)
+  const src = fs.readFileSync(file, 'utf8')
+  const status = src.match(/^status:\s*(\S+)\s*$/m)?.[1] ?? 'unreviewed'
+  const reviewer = src.match(/^reviewer:\s*(\S+)\s*$/m)?.[1]
+  return { status, reviewer }
+}
+
+const groups: Group[] = sidebarData.sections
+  .map((s: any) => ({
+    label: s.label,
+    entries: s.items
+      // 分类落地页与本页不参与词条复核统计；README/贡献者照常计入并参与复核。
+      .filter((i: any) => !i.isCategory && i.slug !== 'review')
+      .map((i: any) => ({ label: i.label, slug: i.slug, ...readStatus(i.slug) })),
+  }))
+  .filter((g) => g.entries.length > 0)
+
+const all = groups.flatMap((g) => g.entries)
+const total = all.length
+const reviewed = all.filter((e) => e.status === 'reviewed').length
+const pct = Math.round((reviewed / total) * 100)
+---
+
+<div class="review-status">
+  <div class="summary">
+    <div class="bar" role="img" aria-label={`复核进度 ${reviewed}/${total}`}>
+      <div class="bar-fill" style={`width: ${Math.max(pct, reviewed > 0 ? 2 : 0)}%`} />
+    </div>
+    <p>
+      共 {total} 个词条，已复核 <strong>{reviewed}</strong> 个，
+      未复核 <strong>{total - reviewed}</strong> 个（{pct}%）。
+      未复核词条的译文以 <a href="https://github.com/miter6/gpu-glossary-zh">miter6/gpu-glossary-zh</a>
+      的翻译为草稿，尚未经过对照英文原文的逐条复核。
+    </p>
+  </div>
+</div>
+
+{Astro.props.summaryOnly !== true && (
+  <div class="detail">
+    {groups.map((g) => {
+      const done = g.entries.filter((e) => e.status === 'reviewed').length
+      return (
+        <details>
+          <summary>
+            <strong>{g.label}</strong>（{done}/{g.entries.length} 已复核）
+          </summary>
+          <table>
+            <thead>
+              <tr><th>词条</th><th>状态</th><th>复核人</th></tr>
+            </thead>
+            <tbody>
+              {g.entries.map((e) => (
+                <tr>
+                  <td><a href={`/gpu-glossary/${e.slug}/`}>{e.label}</a></td>
+                  <td>
+                    {e.status === 'reviewed'
+                      ? <span class="tag ok">已复核</span>
+                      : <span class="tag draft">未复核</span>}
+                  </td>
+                  <td>{e.reviewer ?? '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </details>
+      )
+    })}
+  </div>
+)}
+
+<style>
+  .bar { height: 8px; border-radius: 4px; background: var(--sl-color-gray-5, #222); overflow: hidden; margin: 0.5rem 0; }
+  .bar-fill { height: 100%; background: var(--sl-color-accent-high); }
+  .summary { margin-bottom: 1.5rem; }
+  .detail details { margin: 0.5rem 0; border: 1px solid var(--sl-color-gray-5); border-radius: 6px; padding: 0 0.75rem; }
+  .detail summary { padding: 0.5rem 0; cursor: pointer; }
+  table { width: 100%; }
+  .tag { padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.8rem; }
+  .tag.ok { background: #16a34a22; color: #16a34a; border: 1px solid #16a34a55; }
+  .tag.draft { background: #d9770622; color: #b45309; border: 1px solid #d9770655; }
+</style>

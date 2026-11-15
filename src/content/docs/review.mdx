@@ -1,0 +1,18 @@
+---
+title: 译稿复核进度
+description: 各词条对照英文原文的人工复核状态一览。
+banner:
+  content: 译稿进行中：本站词条以社区翻译为草稿，尚未全部完成对照英文原文的逐条复核。
+  dismissible: true
+---
+
+import ReviewStatus from '../../components/ReviewStatus.astro';
+
+本词条库的译文以 [miter6/gpu-glossary-zh](https://github.com/miter6/gpu-glossary-zh)
+的翻译为草稿。每个词条在**对照英文原文逐段复核**之前都标注为"未复核"。
+
+复核要求与维护方式见仓库中的 `CONTRIBUTING-zh.md`：逐段对照原文检查含义、
+数值与例外条件，并按 `docs/terminology.md` 统一术语；复核完成后把该词条
+frontmatter 中的 `status` 改为 `reviewed` 并填写 `reviewer`。
+
+<ReviewStatus />
