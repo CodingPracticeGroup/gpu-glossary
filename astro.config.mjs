@@ -15,6 +15,8 @@ export default defineConfig({
 			title: 'GPU 术语表',
 			description: '简体中文版 GPU 术语表：GPU 硬件、CUDA 软件栈与性能优化术语。译自 Modal GPU Glossary。',
 			locales: { root: { label: '简体中文', lang: 'zh-CN' } },
+			// 词条篇幅短，右侧“本页内容”目录没有有效信息，整列关闭。
+			tableOfContents: false,
 			social: [
 				{ icon: 'github', label: 'GitHub 仓库', href: 'https://github.com/CodingPracticeGroup/gpu-glossary' },
 				{ icon: 'external', label: '英文原文', href: 'https://modal.com/gpu-glossary' },
