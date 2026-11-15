@@ -1,15 +1,16 @@
 ---
 title: "什么是内存合并？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 内存合并（Memory Coalescing）是一种硬件技术，通过在单次 *物理* 内存访问中处理多个 *逻辑* 内存读取请求，来提高 [内存带宽](/gpu-glossary/perf/memory-bandwidth/) 的利用率。
 
 内存合并发生在 [全局内存](/gpu-glossary/device-software/global-memory/) 访问过程中。关于 [共享内存](/gpu-glossary/device-software/shared-memory/) 的高效访问，请参阅关于 [存储体冲突](/gpu-glossary/perf/bank-conflict/) 的文章。
 
-在 [CUDA](/gpu-glossary/device-hardware/cuda-device-architecture/) GPU 中，[全局内存](/gpu-glossary/device-software/global-memory/) 由 [GPU显存](/gpu-glossary/device-hardware/gpu-ram/) 提供，该显存采用如 GDDR 或 HBM 等动态随机存取存储器（DRAM）技术构建。这些技术具有高 [内存带宽](/gpu-glossary/perf/memory-bandwidth/)，但访问延迟也很长（即使与 CPU RAM 所使用的 DDR5 等同类技术相比也是如此）。DRAM 的访问延迟受限于小型电容器为访问线路充电的速度，而这本质上受到散热、功耗和尺寸的限制。正因为这种高延迟，如果所有逻辑内存访问都作为单独的物理访问来处理，GPU的 [内存带宽](/gpu-glossary/perf/memory-bandwidth/) 就无法得到充分利用。
+在 [CUDA](/gpu-glossary/device-hardware/cuda-device-architecture/) GPU 中，[全局内存](/gpu-glossary/device-software/global-memory/) 由 [GPU 显存](/gpu-glossary/device-hardware/gpu-ram/) 提供，该显存采用如 GDDR 或 HBM 等动态随机存取存储器（DRAM）技术构建。这些技术具有高 [内存带宽](/gpu-glossary/perf/memory-bandwidth/)，但访问延迟也很长（即使与 CPU RAM 所使用的 DDR5 等同类技术相比也是如此）。DRAM 的访问延迟受限于小型电容器为访问线路充电的速度，而这本质上受到散热、功耗和尺寸的限制。正因为这种高延迟，如果所有逻辑内存访问都作为单独的物理访问来处理，GPU 的 [内存带宽](/gpu-glossary/perf/memory-bandwidth/) 就无法得到充分利用。
 
-内存合并利用 DRAM 技术的内部机制，使特定的访问模式能够实现全带宽利用率。每次访问 DRAM 地址时，多个连续地址会在单个时钟周期内被并行获取。更多细节请参阅 [《大规模并行处理器编程》第四版](https://www.amazon.com/dp/0323912311) 的第6.1节；全面细节请参阅 Ulrich Drepper 的优秀文章 [_每个程序员应该了解的内存知识_](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)。这些连续内存位置的访问和传输被称为 *DRAM 突发传输*。如果多个并发的逻辑访问可以通过单次物理突发传输来完成，那么这种访问就被称为 *已合并的*。需要注意的是，物理访问是内存事务（memory transaction）的一部分，这一术语在其他关于内存合并的描述中也可能会遇到。
+内存合并利用 DRAM 技术的内部机制，使特定的访问模式能够实现全带宽利用率。每次访问 DRAM 地址时，多个连续地址会在单个时钟周期内被并行获取。更多细节请参阅 [《大规模并行处理器编程》第四版](https://www.amazon.com/dp/0323912311) 的第 6.1 节；如需全面了解，请参阅 Ulrich Drepper 的优秀文章 [_每个程序员应该了解的内存知识_](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)。这些连续内存位置的访问和传输被称为 *DRAM 突发传输*。如果多个并发的逻辑访问可以通过单次物理突发传输来完成，那么这种访问就被称为 *已合并的*。需要注意的是，物理访问是内存事务（memory transaction）的一部分，这一术语在其他关于内存合并的描述中也可能会遇到。
 
 在 CPU 上，类似的将突发传输映射到缓存行的机制可以提高访问效率。但与 CPU 中由硬件自动管理缓存行为不同，在 GPU 编程中，内存合并通常需要程序员进行显式优化。
 
@@ -54,6 +55,6 @@ stride        GB/s
   128        11.2
 ```
 
-也就是说，步长增加为 2 会使吞吐量减半，这是因为每个 [线程束](/gpu-glossary/device-software/warp/) 请求所需的 DRAM 突发传输次数翻倍。将步长加倍到 4 再次使吞吐量减半。而当步长为 16 时，吞吐量降至初始值的 16 倍，此后性能衰减模式发生变化，这大概是由于其他内存子系统组件的可见性增加以及它们因局部性降低（例如设备上的 TLB 未命中）而导致的性能下降。
+也就是说，步长增加为 2 会使吞吐量减半，这是因为每个 [线程束](/gpu-glossary/device-software/warp/) 请求所需的 DRAM 突发传输次数翻倍。将步长加倍到 4 再次使吞吐量减半。而而当步长达到 16 时吞吐量已跌至 1/16，此后变化模式不同，推测是因为其他内存子系统组件的影响开始显现，而局部性的下降（例如片上 TLB 未命中）拖慢了它们。
 
-关于全局内存访问的更多最佳实践，请参阅 NVIDIA 开发者博客上的文章 [_如何在CUDA C/C++内核中高效访问全局内存_](https://developer.nvidia.com/blog/how-access-global-memory-efficiently-cuda-c-kernels/)。
+关于全局内存访问的更多最佳实践，请参阅 NVIDIA 开发者博客上的文章 [_如何在 CUDA C/C++ 内核中高效访问全局内存_](https://developer.nvidia.com/blog/how-access-global-memory-efficiently-cuda-c-kernels/)。

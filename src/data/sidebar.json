@@ -393,7 +393,7 @@
           "slug": "perf/streaming-multiprocessor-utilization"
         },
         {
-          "label": "线程束分化",
+          "label": "线程束发散",
           "slug": "perf/warp-divergence"
         },
         {

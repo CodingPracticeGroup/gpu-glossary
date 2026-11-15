@@ -31,9 +31,11 @@
 | occupancy | 占用率 | |
 | compute-bound / memory-bound | 计算受限 / 内存受限 | |
 | roofline model | 屋顶线模型（roofline） | 首次出现保留英文 |
-| memory coalescing | 访存合并 / 内存合并访问 | 待定名：复核时统一其一 |
-| bank conflict | 存储体冲突 | 待定名：复核时统一 |
+| memory coalescing | 内存合并 | 已定名，全站统一；动词场景可用“合并访问” |
+| bank conflict | 存储体冲突 | 已定名，全站统一 |
 | latency hiding | 延迟隐藏 | |
+| warp divergence | 线程束发散 | 不用“分歧”“分化”；词条标题/侧栏/正文已统一 |
+| scoreboard stall | 记分板停顿 | stalled 一律译“停顿” |
 | instruction set architecture (ISA) | 指令集架构 (ISA) | |
 | PTX | PTX | 保留缩写，首次给 "Parallel Thread eXecution" 全称 |
 | SASS | SASS | 保留缩写 |
