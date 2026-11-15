@@ -1,6 +1,7 @@
 ---
 title: "贡献者"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 此列表尚不完整，您可以通过[扩展它](https://github.com/modal-labs/gpu-glossary)来提供帮助。
@@ -13,7 +14,7 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 - [Philip Fabianek](https://www.linkedin.com/in/philip-fabianek/) 贡献了关于 [cuBLAS](/gpu-glossary/host-software/cublas/) 和 [cuDNN](/gpu-glossary/host-software/cudnn/) 的文章。
 - [Debashish Chakraborty](https://github.com/debashishc) 共同撰写了关于 [CuTe DSL](/gpu-glossary/host-software/cute-dsl/) 的文章。
 - [Md Rashad Al Hasan Rony](https://www.rashad.ai/#about-me) 共同撰写了关于 [内存合并](/gpu-glossary/perf/memory-coalescing/) 的文章。
-- [Christopher Fleetwood](https://fleetwood.dev/) 贡献了关于 [warpgroups](/gpu-glossary/device-software/warpgroup/) 和 [记分板](/gpu-glossary/perf/scoreboard-stall/) 的文章.
+- [Christopher Fleetwood](https://fleetwood.dev/) 贡献了关于 [warpgroups](/gpu-glossary/device-software/warpgroup/) 和 [记分板](/gpu-glossary/perf/scoreboard-stall/) 的文章。
 - [您](https://github.com/modal-labs/gpu-glossary) 可以为保持术语表最新且无错误做出贡献！
 
 ## 设计

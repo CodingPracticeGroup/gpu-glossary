@@ -1,6 +1,7 @@
 ---
 title: "设备软件（Device Software）"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 

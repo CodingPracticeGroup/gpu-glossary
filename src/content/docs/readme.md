@@ -1,6 +1,7 @@
 ---
 title: "README"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 ```
@@ -24,7 +25,7 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 与 PDF、Discord 或书籍不同，本术语表是一个 *超文本文档* ——所有页面都相互链接，因此您可以直接跳转至 [线程束调度器 (Warp Scheduler)](/gpu-glossary/device-hardware/warp-scheduler/) 阅读，从而更好地理解在 [CUDA 编程模型](/gpu-glossary/host-software/cuda-c/) 文章中遇到的 [线程 (thread)](/gpu-glossary/device-software/thread/) 概念。
 
-你也可以按线性顺序阅读。要在页面间导航，可使用方向键、每页底部的箭头或目录（在桌面端显示于侧边栏，在移动端显示于汉堡菜单中）。
+您也可以顺序通读全书。要在页面间导航，可使用方向键、每页底部的箭头或目录（在桌面端显示于侧边栏，在移动端显示于汉堡菜单中）。
 
 本术语表的源代码可在 [GitHub](https://github.com/modal-labs/gpu-glossary) 上获取。
 
