@@ -1,6 +1,7 @@
 ---
 title: "什么是流水线利用率？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 流水线利用率用于衡量 [内核 (kernel)](/gpu-glossary/device-software/kernel/) 对每个 [流式多处理器 (Streaming Multiprocessor, SM)](/gpu-glossary/device-hardware/streaming-multiprocessor/) 内执行资源的利用效率。
