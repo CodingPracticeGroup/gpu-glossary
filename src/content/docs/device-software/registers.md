@@ -1,6 +1,7 @@
 ---
 title: "什么是寄存器？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 ![](/gpu-glossary/images/light-cuda-programming-model.svg)  

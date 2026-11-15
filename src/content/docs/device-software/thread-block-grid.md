@@ -1,6 +1,7 @@
 ---
 title: "什么是线程块网格？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 ![](/gpu-glossary/images/light-cuda-programming-model.svg)  
@@ -11,4 +12,4 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 在 [内存层次结构 (memory hierarchy)](/gpu-glossary/device-software/memory-hierarchy/) 中对应的级别是 [全局内存 (global memory)](/gpu-glossary/device-software/global-memory/)。
 
-[线程块 (thread block)](/gpu-glossary/device-software/thread-block/) 实际上是独立的计算单元。它们以并发方式执行，即执行顺序不确定，范围从在只有一个[流式多处理器 (Streaming Multiprocessor)](/gpu-glossary/device-hardware/streaming-multiprocessor/) 的 GPU 上完全顺序执行，到在有足够资源同时运行所有线程块的 GPU 上完全并行执行。
+[线程块 (thread block)](/gpu-glossary/device-software/thread-block/) 实际上是独立的计算单元。它们以并发方式执行，即执行顺序不确定，范围从在只有一个 [流式多处理器 (Streaming Multiprocessor)](/gpu-glossary/device-hardware/streaming-multiprocessor/) 的 GPU 上完全顺序执行，到在有足够资源同时运行所有线程块的 GPU 上完全并行执行。

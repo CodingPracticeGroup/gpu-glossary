@@ -1,9 +1,10 @@
 ---
 title: "什么是计算能力？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
-[并行线程执行 (Parallel Thread Execution)](/gpu-glossary/device-software/parallel-thread-execution/) 指令集中的指令仅与特定的物理 GPU 兼容。用于将物理 GPU 的细节从指令集和 [编译器 (compiler)](/gpu-glossary/host-software/nvcc/) 中抽象出来的版本控制系统称为 "计算能力" （Compute Capability）。
+[并行线程执行 (Parallel Thread Execution)](/gpu-glossary/device-software/parallel-thread-execution/) 指令集中的指令仅与特定的物理 GPU 兼容。用于将物理 GPU 的细节从指令集和 [编译器 (compiler)](/gpu-glossary/host-software/nvcc/) 中抽象出来的版本编号体系则称为"计算能力"（Compute Capability）。
 
 大多数计算能力版本号包含两个组成部分：主版本号和次版本号。NVIDIA 承诺按照 [洋葱层模型](https://docs.nvidia.com/cuda/parallel-thread-execution/#ptx-module-directives-target)，主版本号和次版本号均支持前向兼容性（旧的 [PTX](/gpu-glossary/device-software/parallel-thread-execution/) 代码可在新 GPU 上运行）。
 
