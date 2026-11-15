@@ -1,0 +1,15 @@
+---
+title: "什么是特殊功能单元？（SFU）"
+status: reviewed
+reviewer: ai-review
+upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
+---
+[流式多处理器 (Streaming Multiprocessors, SMs)](/gpu-glossary/device-hardware/streaming-multiprocessor/) 中的特殊功能单元 (Special Function Units, SFUs) 可加速特定算术运算。
+
+![](/gpu-glossary/images/light-gh100-sm.svg)
+
+> H100 流式多处理器（SM）的内部架构图。特殊功能单元以粉红色显示，与[加载/存储单元 (Load/Store Units)](/gpu-glossary/device-hardware/load-store-unit/)一起展示。修改自 NVIDIA 的 [H100 白皮书](https://modal-cdn.com/gpu-glossary/gtc22-whitepaper-hopper.pdf)。
+
+对于神经网络工作负载而言，值得注意的是一批超越函数运算，例如 `exp`、`sin` 和 `cos`。
+
+与特殊功能单元相关的 [流式汇编器 (Streaming Assembler, SASS)](/gpu-glossary/device-software/streaming-assembler/) 指令通常以 `MUFU` 开头：`MUFU.SQRT`、`MUFU.EX2`。有关使用 `MUFU.EX2` 指令在 [CUDA C++](/gpu-glossary/host-software/cuda-c/) 中实现 `expf` 内置函数的示例汇编代码，请参阅 [此 Godbolt 链接](https://godbolt.org/z/WGh3rPe83)。

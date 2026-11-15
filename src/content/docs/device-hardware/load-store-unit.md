@@ -1,0 +1,13 @@
+---
+title: "什么是加载/存储单元？（LSU）"
+status: reviewed
+reviewer: ai-review
+upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
+---
+加载/存储单元 (Load/Store Unit, LSU) 负责向 GPU 的内存子系统分派加载或存储数据的请求。
+
+![](/gpu-glossary/images/light-gh100-sm.svg)  
+
+> H100 流式多处理器（SM）的内部架构图。 加载/存储单元 (Load/Store Units) 与 [特殊功能单元](/gpu-glossary/device-hardware/special-function-unit/) 一同以粉红色标注。修改自 NVIDIA 的 [H100 白皮书](https://modal-cdn.com/gpu-glossary/gtc22-whitepaper-hopper.pdf)。
+
+对于 [CUDA 程序员](/gpu-glossary/host-software/cuda-software-platform/) 而言，最重要的是加载/存储单元直接与[流式多处理器 (Streaming Multiprocessor)](/gpu-glossary/device-hardware/streaming-multiprocessor/) 的片上 SRAM [L1 数据缓存](/gpu-glossary/device-hardware/l1-data-cache/) 交互，并间接与片外、位于设备之上的 [全局内存 (global RAM)](/gpu-glossary/device-hardware/gpu-ram/) 交互，这两者分别对应 [CUDA 编程模型 (CUDA programming model)](/gpu-glossary/device-software/cuda-programming-model/) 中 [内存层次结构 (memory hierarchy)](/gpu-glossary/device-software/memory-hierarchy/) 的最低层和最高层。

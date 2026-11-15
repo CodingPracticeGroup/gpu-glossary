@@ -1,0 +1,69 @@
+/* 风格目标：接近 modal.com/gpu-glossary —— 浅色主题、蓝色强调、中性灰蓝正文。
+   取色参考其站点 CSS 中的 --color-raw-blue-* 调色板（如链接蓝 #0061a6），
+   属于对同一视觉风格的自定义实现，而非复制其样式源码。 */
+
+:root {
+	--sl-font:
+		'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+		'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC',
+		'Source Han Sans SC', sans-serif;
+	--sl-font-system: var(--sl-font);
+}
+
+/* ---------- 浅色主题（默认，对齐原站 Light 主题） ---------- */
+:root,
+:root[data-theme='light'] {
+	--sl-color-accent-low: #d6ecf9;
+	--sl-color-accent: #0061a6;
+	--sl-color-accent-high: #004e86;
+
+	--sl-color-white: #16232e; /* 正文深灰蓝 */
+	--sl-color-gray-1: #2a3238;
+	--sl-color-gray-2: #3c4d59;
+	--sl-color-gray-3: #5c6f7e;
+	--sl-color-gray-4: #8a97a1;
+	--sl-color-gray-5: #d5dde3;
+	--sl-color-gray-6: #eef2f5;
+	--sl-color-black: #ffffff;
+
+	--sl-border: var(--sl-color-gray-5);
+}
+
+/* ---------- 深色主题（对齐原站深色系的中性底 + 亮蓝链接） ---------- */
+:root[data-theme='dark'] {
+	--sl-color-accent-low: #16303f;
+	--sl-color-accent: #4d9fd8;
+	--sl-color-accent-high: #91c8ef;
+
+	--sl-color-white: #eef2f5;
+	--sl-color-gray-1: #d5dde3;
+	--sl-color-gray-2: #aeb9c1;
+	--sl-color-gray-3: #8a97a1;
+	--sl-color-gray-4: #485966;
+	--sl-color-gray-5: #2a3238;
+	--sl-color-gray-6: #1d2429;
+	--sl-color-black: #14191d;
+}
+
+/* 侧边栏分组标题：小号大写灰字，贴近原站 “DEVICE HARDWARE” 样式 */
+summary > span {
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	font-size: 0.75rem;
+	color: var(--sl-color-gray-3);
+}
+
+/* 侧边栏缩写徽章弱化，接近原站条目下的灰色小字缩写 */
+a .slug-badge,
+summary a .badge {
+	background: transparent;
+	color: var(--sl-color-gray-4);
+	border: none;
+	font-weight: 500;
+}
+
+/* 中栏内容自适应浏览器宽度：覆盖 Starlight 默认的 45rem 上限，
+   左右两栏（导航 / 本页目录）之间的全部可用宽度都留给正文。 */
+:root {
+	--sl-content-width: 100%;
+}

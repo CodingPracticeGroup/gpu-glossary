@@ -1,0 +1,45 @@
+---
+title: GPU 术语表（GPU Glossary）中文译本
+description: 面向 GPU 编程的中文术语表，覆盖 GPU 硬件、CUDA 软件栈与性能优化术语。
+banner:
+  content: 本简体中文译本以社区译稿为基础整理，并已逐条对照英文原文完成复核；如发现遗留错误，欢迎在 GitHub 报告。
+  dismissible: true
+template: splash
+hero:
+  title: GPU 术语表
+  text: 简体中文译本 · Simplified Chinese
+  tagline: 覆盖 GPU 硬件、CUDA 软件栈与性能优化的术语表，帮助你把不同层次的概念（如 SM 架构、计算能力、nvcc 编译选项）串联起来。译自 Modal GPU Glossary。
+  actions:
+    - text: 从设备硬件开始
+      icon: right-arrow
+      link: /gpu-glossary/device-hardware/
+      variant: primary
+    - text: 阅读英文原文
+      icon: external
+      link: https://modal.com/gpu-glossary/
+---
+
+import AsciiLogo from '../../components/AsciiLogo.astro';
+
+<AsciiLogo />
+
+本术语表的简体中文版基于 [miter6/gpu-glossary-zh](https://github.com/miter6/gpu-glossary-zh)
+的译稿整理，并已对照 [Modal GPU Glossary](https://modal.com/gpu-glossary/)
+英文原文逐条核对修正。译名约定与维护流程见仓库内的术语表文档；如发现错漏，请在
+[GitHub](https://github.com/CodingPracticeGroup/gpu-glossary) 提 issue。
+
+## 目录
+
+- [设备硬件](/device-hardware/) — GPU 的物理组成：SM、Tensor Core、显存等
+- [设备软件](/device-software/) — 运行在 GPU 上的软件抽象：线程、warp、内核、内存层次等
+- [主机软件](/host-software/) — CPU 侧的软件栈：驱动、CUDA API、nvcc、cuBLAS 等
+- [性能](/perf/) — 优化 GPU 程序性能所需的关键概念：占用率、内存合并、屋顶线模型等
+
+## 许可与来源
+
+英文原文版权归 [Modal](https://modal.com) 所有，以
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 许可发布于
+[modal-labs/gpu-glossary](https://github.com/modal-labs/gpu-glossary)；
+中文译稿以 MIT 许可发布于 [miter6/gpu-glossary-zh](https://github.com/miter6/gpu-glossary-zh)。
+本页面衍生自上述两者，同样以 CC BY 4.0 提供。
+
