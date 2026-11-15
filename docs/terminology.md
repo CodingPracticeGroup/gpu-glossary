@@ -22,6 +22,7 @@
 | thread block | 线程块 | |
 | grid | 线程块网格 | |
 | kernel | 内核（kernel） | 沿用原译定名全站统一；与 OS kernel 靠上下文区分，必要时括注英文 |
+| token | token | 不译“令牌”；正文按中英文空格规范留空格 |
 | cooperative thread array (CTA) | 协作线程数组 (CTA) | 与"线程块"对应关系按原文说明 |
 | shared memory | 共享内存 | |
 | global memory | 全局内存 | |

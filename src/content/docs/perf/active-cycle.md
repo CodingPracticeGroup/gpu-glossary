@@ -1,9 +1,10 @@
 ---
 title: "什么是活动周期？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
-活动周期指的是 [流式多处理器 (Streaming Multiprocessor)](/gpu-glossary/device-hardware/streaming-multiprocessor/) 中至少驻留有一个 [活动线程束 (active warp)](/gpu-glossary/perf/warp-execution-state/) 时钟周期。该 [线程束 (warp)](/gpu-glossary/device-software/warp/) 可能处于 [就绪 (eligible)](/gpu-glossary/perf/warp-execution-state/) 或 [停滞 (stalled)](/gpu-glossary/perf/warp-execution-state/) 状态。
+活动周期指的是 [流式多处理器 (Streaming Multiprocessor)](/gpu-glossary/device-hardware/streaming-multiprocessor/) 中至少驻留有一个 [活动线程束（active warp）](/gpu-glossary/perf/warp-execution-state/) 的时钟周期。该 [线程束 (warp)](/gpu-glossary/device-software/warp/) 可能处于 [就绪 (eligible)](/gpu-glossary/perf/warp-execution-state/) 或 [停顿 (stalled)](/gpu-glossary/perf/warp-execution-state/) 状态。
 
 ![](/gpu-glossary/images/light-cycles.svg)
 
