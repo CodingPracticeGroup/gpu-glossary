@@ -16,7 +16,6 @@ const SECTIONS = [
     items: [
       { slug: 'readme' },
       { slug: 'contributors' },
-      { slug: 'review', label: '译稿复核进度' },
     ],
   },
   {

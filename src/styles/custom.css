@@ -62,7 +62,8 @@ summary a .badge {
 	font-weight: 500;
 }
 
-/* 内容区行宽与原站接近 */
-.sl-markdown-content {
-	max-width: 46em;
+/* 中栏内容自适应浏览器宽度：覆盖 Starlight 默认的 45rem 上限，
+   左右两栏（导航 / 本页目录）之间的全部可用宽度都留给正文。 */
+:root {
+	--sl-content-width: 100%;
 }
