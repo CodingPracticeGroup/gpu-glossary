@@ -1,18 +1,19 @@
 ---
 title: "什么是利特尔法则？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
-利特尔法则（Little's Law）确定了通过吞吐量完全 [隐藏延迟 (hide latency)](/gpu-glossary/perf/latency-hiding/) 所需的并发量。
+利特尔法则（Little's Law）给出的是通过吞吐量完全 [隐藏延迟 (hide latency)](/gpu-glossary/perf/latency-hiding/) 所需的并发量。
 
 ```
-并发量 (操作数) = 延迟 (秒) * 吞吐量 (操作数/秒)
+concurrency (ops) = latency (s) * throughput (ops/s)
 ```
 
-在 [Lazowska等人所著的经典定量系统教科书](https://homes.cs.washington.edu/~lazowska/qsp/Images/Chap_03.pdf) 中，利特尔法则描述为分析领域 "最重要的基本定律" 之一。
+在 [Lazowska等人所著的经典定量系统教科书](https://homes.cs.washington.edu/~lazowska/qsp/Images/Chap_03.pdf) 中，利特尔法则被称作分析领域“最重要的基本定律”。
 
 利特尔法则决定了 GPU 需要有多少指令处于 "执行中" 状态，才能通过 [线程束调度器 (warp schedulers)](/gpu-glossary/device-hardware/warp-scheduler/) 进行 [线程束 (warp)](/gpu-glossary/device-software/warp/) 切换（也称为细粒度线程级并行，类似于 CPU 中的 [同步多线程](https://en.wikipedia.org/wiki/Simultaneous_multithreading)）来 [隐藏延迟 (hide latency)](/gpu-glossary/perf/latency-hiding/) 。
 
-如果某个 GPU 的峰值吞吐量为每周期 1 条指令，内存访问延迟为 400 个周期，那么程序中所有 [活跃线程束 (active warps)](/gpu-glossary/perf/warp-execution-state/) 需要 400 个并发内存操作。如果吞吐量增加到每周期 10 条指令，那么程序需要 4000 个并发内存操作才能充分利用这种增长。更多细节请参阅关于 [延迟隐藏 (latency hiding)](/gpu-glossary/perf/latency-hiding/) 的文章。
+如果某个 GPU 的峰值吞吐量为每周期 1 条指令，内存访问延迟为 400 个周期，那么程序中所有 [活跃线程束 (active warps)](/gpu-glossary/perf/warp-execution-state/) 需要在所有活跃线程束上合计维持 400 个并发内存操作。如果吞吐量增加到每周期 10 条指令，那么程序才需要 4000 个并发内存操作才能充分利用这一提升。更多细节请参阅关于 [延迟隐藏 (latency hiding)](/gpu-glossary/perf/latency-hiding/) 的文章。
 
-对于利特尔法则的一个重要应用，请考虑 [Vasily Volkov博士论文](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-143.pdf) 第4.3节中关于 [延迟隐藏 (latency hiding)](/gpu-glossary/perf/latency-hiding/) 的观察结果：隐藏纯内存访问延迟所需的线程束数量并不比隐藏纯算术延迟所需的线程束数量多太多（在他的实验中是30 vs 24）。直观上看，内存访问的较长延迟似乎需要更多的并发。但并发量不仅由延迟决定，还受吞吐量影响。由于 [内存带宽 (memory bandwidth)](/gpu-glossary/perf/memory-bandwidth/) 远低于 [算术带宽 (arithmetic bandwidth)](/gpu-glossary/perf/arithmetic-bandwidth/)，所需的并发量结果大致相同——这对于面向 [延迟隐藏 (latency hiding)](/gpu-glossary/perf/latency-hiding/) 且需要混合算术和内存操作的系统而言，是一种有用的平衡形式。
+对于利特尔法则的一个重要应用，请考虑 [Vasily Volkov博士论文](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-143.pdf) 第 4.3 节中关于 [延迟隐藏 (latency hiding)](/gpu-glossary/perf/latency-hiding/) 的观察结果：隐藏纯内存访问延迟所需的线程束数量并不比隐藏纯算术延迟所需的线程束数量多太多（他的实验中为 30 对 24）。直观上看，内存访问的较长延迟似乎需要更多的并发。但并发量不仅由延迟决定，还受吞吐量影响。由于 [内存带宽 (memory bandwidth)](/gpu-glossary/perf/memory-bandwidth/) 远低于 [算术带宽 (arithmetic bandwidth)](/gpu-glossary/perf/arithmetic-bandwidth/)，所需的并发量最终几乎相同——这对于面向 [延迟隐藏 (latency hiding)](/gpu-glossary/perf/latency-hiding/) 且需要混合算术和内存操作的系统而言，是一种有用的平衡形式。
