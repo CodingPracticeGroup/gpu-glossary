@@ -1,6 +1,7 @@
 ---
 title: "什么是 GPU RAM？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 ![](/gpu-glossary/images/light-hbm-schematic.svg)  
@@ -9,7 +10,7 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 GPU 的底层内存是一种大容量（从数 MB 到数 GB）的存储区域，可被 GPU 的所有 [流式多处理器 (SM)](/gpu-glossary/device-hardware/streaming-multiprocessor/) 寻址。
 
-它也被称为 GPU RAM（随机存取存储器）或显存 (VRAM)。它使用动态 RAM (DRAM) 单元，比 [寄存器文件](/gpu-glossary/device-hardware/register-file/) 和 [L1 数据缓存](/gpu-glossary/device-hardware/l1-data-cache/) 中使用的静态 RAM (SRAM) 相比，DRAM 速度更慢但体积更小。有关 DRAM 和 SRAM 的详细信息，我们推荐 Ulrich Drepper 2007 年的文章 ["程序员应了解的内存知识"](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)。
+它也被称为 GPU RAM（随机存取存储器）或显存 (VRAM)。它使用动态 RAM (DRAM) 单元，比 [寄存器文件](/gpu-glossary/device-hardware/register-file/) 和 [L1 数据缓存](/gpu-glossary/device-hardware/l1-data-cache/) 中使用的静态 RAM (SRAM) 相比，DRAM 速度更慢但体积更小。有关 DRAM 和 SRAM 的详细信息，我们推荐 Ulrich Drepper 2007 年的文章 ["每个程序员都应该了解的内存知识"](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)。
 
 通常，底层内存与 [流式多处理器 (SM)](/gpu-glossary/device-hardware/streaming-multiprocessor/) 不在同一芯片上，不过在最新的数据中心级 GPU（如 H100）中，内存通过共享 [中介层](https://en.wikipedia.org/wiki/Interposer) 连接，以降低延迟并提高 [内存带宽](/gpu-glossary/perf/memory-bandwidth/)。这些 GPU 使用 [高带宽内存 (HBM)](https://en.wikipedia.org/wiki/High_Bandwidth_Memory) 技术，而不是消费级 GPU 和 CPU 中更常见的双倍数据速率 (DDR) 内存。
 

@@ -1,15 +1,16 @@
 ---
 title: "什么是 CUDA 核心？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 CUDA 核心是执行标量算术指令的 GPU [核心](/gpu-glossary/device-hardware/core/)。
 
 ![](/gpu-glossary/images/light-gh100-sm.svg)  
 
-> H100 流式多处理器（SM）的内部架构图。CUDA 核心和张量核心以绿色显示。请注意张量核心尺寸更大且数量更少。改编自 NVIDIA 的 [H100 白皮书](https://modal-cdn.com/gpu-glossary/gtc22-whitepaper-hopper.pdf)。
+> H100 流式多处理器（SM）的内部架构图。CUDA 核心和Tensor Core以绿色显示。请注意Tensor Core尺寸更大且数量更少。改编自 NVIDIA 的 [H100 白皮书](https://modal-cdn.com/gpu-glossary/gtc22-whitepaper-hopper.pdf)。
 
-CUDA 核心需与 [张量核心](/gpu-glossary/device-hardware/tensor-core/) 区分 —— 后者专门执行矩阵运算。
+CUDA 核心需与 [Tensor Core](/gpu-glossary/device-hardware/tensor-core/) 区分 —— 后者专门执行矩阵运算。
 
 与 CPU 核心不同，发送给 CUDA 核心的指令通常不是独立调度的。相反，成组的 CUDA Cores 通过 [线程束调度器](/gpu-glossary/device-hardware/warp-scheduler/) 同时接收相同指令，但将这些指令应用于不同的 [寄存器](/gpu-glossary/device-software/registers/) 。这些核心组的常见规模为 32（即一个 Warp 的大小），但现代 GPU 也支持最小为 1 线程的分组（但这会牺牲性能）。
 

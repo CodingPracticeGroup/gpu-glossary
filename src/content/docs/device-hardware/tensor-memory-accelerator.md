@@ -1,6 +1,7 @@
 ---
 title: "什么是张量内存加速器？（TMA）"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 张量内存加速器 (Tensor Memory Accelerator, TMA) 是 Hopper 和 Blackwell [架构](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) GPU 中的专用硬件，旨在加速对 [GPU 内存](/gpu-glossary/device-hardware/gpu-ram/) 中多维数组的访问。
@@ -11,7 +12,7 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 TMA 将数据从 [全局内存](/gpu-glossary/device-software/global-memory/)/[GPU 内存](/gpu-glossary/device-hardware/gpu-ram/) 加载到 [共享内存](/gpu-glossary/device-software/shared-memory/)/[L1 数据缓存](/gpu-glossary/device-hardware/l1-data-cache/)，完全绕过了 [寄存器](/gpu-glossary/device-software/registers/)/[寄存器文件](/gpu-glossary/device-hardware/register-file/)。
 
-TMA 的第一个优势在于减少对其他计算和内存资源的使用。TMA 硬件为批量仿射内存访问（即对许多基地址和偏移量并发执行的 `addr = width * base + offset` 形式的访问，这是数组最常见的访问方式）计算地址。将这项工作卸载给 TMA 可以节省 [寄存器文件](/gpu-glossary/device-hardware/register-file/) 空间，降低 "[寄存器压力](/gpu-glossary/perf/register-pressure/)" ，并减少对 [CUDA 核心](/gpu-glossary/device-hardware/cuda-core/) 提供的 [算术带宽](/gpu-glossary/perf/arithmetic-bandwidth/) 的需求。对于具有两个或更多维度数组的大规模（KB 级别）访问，这种节省更为显著。
+TMA 的第一个优势在于减少对其他计算和内存资源的使用。TMA 硬件为批量仿射内存访问（即对许多基地址和偏移量并发执行的 `addr = width * base + offset` 形式的访问，这是数组最常见的访问方式）计算地址。将这项工作卸载给 TMA 可以节省 [寄存器文件](/gpu-glossary/device-hardware/register-file/) 空间，降低 "[寄存器压力](/gpu-glossary/perf/register-pressure/)" ，并减少对 [CUDA 核心](/gpu-glossary/device-hardware/cuda-core/) 提供的 [算术带宽](/gpu-glossary/perf/arithmetic-bandwidth/) 的需求。对于访问二维及以上数组的大规模（KB 级）操作，这种节省更为显著。
 
 第二个优势来自 TMA 拷贝的异步执行模型。单个 [CUDA 线程](/gpu-glossary/device-software/thread/) 可以触发一个大型拷贝，然后重新加入其所在的 [线程束](/gpu-glossary/device-software/warp/) 以执行其他工作。随后，这些 [线程](/gpu-glossary/device-software/thread/) 以及同一 [线程块](/gpu-glossary/device-software/thread-block/) 中的其他线程可以异步检测 TMA 拷贝的完成情况，并对结果进行操作（类似于生产者-消费者模型）。
 

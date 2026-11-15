@@ -1,6 +1,7 @@
 ---
 title: "什么是 L1 数据缓存？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 L1 数据缓存是 [流式多处理器 (SM)](/gpu-glossary/device-hardware/streaming-multiprocessor/) 的私有内存。
