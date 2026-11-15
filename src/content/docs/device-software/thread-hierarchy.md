@@ -1,11 +1,12 @@
 ---
 title: "CUDA 线程层次结构是什么？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 ![](/gpu-glossary/images/light-cuda-programming-model.svg)  
 
-> [CUDA 编程模型](/gpu-glossary/device-software/cuda-programming-model/) 的线程层次结构从单个 [线程](/gpu-glossary/device-software/thread/) 到 [线程块](/gpu-glossary/device-software/thread-block/) 再到 [线程块网格](/gpu-glossary/device-software/thread-block-grid/)（左侧），映射到硬件上则从 CUDA [核心](/gpu-glossary/device-hardware/core/) 到 [流式多处理器](/gpu-glossary/device-hardware/streaming-multiprocessor/) 再到整个 GPU（右侧）。改编自 NVIDIA 的 [CUDA Refresher: The CUDA Programming Model](https://developer.nvidia.com/blog/cuda-refresher-cuda-programming-model/) 和 NVIDIA [CUDA C++ Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model) 中的图表。
+> [CUDA 编程模型](/gpu-glossary/device-software/cuda-programming-model/) 的线程层次结构从单个 [线程](/gpu-glossary/device-software/thread/) 到 [线程块](/gpu-glossary/device-software/thread-block/) 再到 [线程块网格](/gpu-glossary/device-software/thread-block-grid/)（左侧），映射到硬件上则从 [CUDA 核心](/gpu-glossary/device-hardware/cuda-core/) 到 [流式多处理器](/gpu-glossary/device-hardware/streaming-multiprocessor/) 再到整个 GPU（右侧）。改编自 NVIDIA 的 [CUDA Refresher: The CUDA Programming Model](https://developer.nvidia.com/blog/cuda-refresher-cuda-programming-model/) 和 NVIDIA [CUDA C++ Programming Guide](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#programming-model) 中的图表。
 
 线程层次结构是 [CUDA 编程模型](/gpu-glossary/device-software/cuda-programming-model/) 的核心抽象概念之一，与 [内存层次结构](/gpu-glossary/device-software/memory-hierarchy/) 并列。它通过多个层级组织并行程序的执行，从单个线程一直扩展到整个GPU设备。
 

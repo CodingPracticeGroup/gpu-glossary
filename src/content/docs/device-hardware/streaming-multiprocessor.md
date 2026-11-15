@@ -1,6 +1,7 @@
 ---
 title: "什么是流式多处理器？（SM）"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 当我们 [对 GPU 进行编程](/gpu-glossary/host-software/cuda-software-platform/) 时，会生成供其流式多处理器 (Streaming Multiprocessor) 执行的[指令序列](/gpu-glossary/device-software/streaming-assembler/)。
@@ -21,7 +22,7 @@ GPU 的流式多处理器（SMs） 还支持大量 *并发* 线程 —— 即指
 
 H100 上的单个 SM 最多可并发执行多达 2048 个并发线程，这些线程分布在 64 个线程组中，每个线程组包含 32 个线程。配置 132 个 SM 后，GPU 总共可支持超过 250,000 个并发线程。
 
-CPU 也能并发运行大量线程。但是 [线程束 (Warp)](/gpu-glossary/device-software/warp/) 之间的切换速度仅需一个时钟周期（比 CPU 的上下文切换快 1000 倍以上），这一能力由 SM 的 [线程束调度器 (Warp Scheduler)](/gpu-glossary/device-hardware/warp-scheduler/) 支持。丰富的可用 [线程束 (Warp)](/gpu-glossary/device-software/warp/) 资源与快速的 [线程束切换 (Warp Switch)](/gpu-glossary/device-hardware/warp-scheduler/) 速度有助于掩盖内存读取、线程同步或其他高开销指令带来的 [延迟 (Latency Hiding)](/gpu-glossary/perf/latency-hiding/)，从而确保由 [CUDA 核心 (CUDA Core)](/gpu-glossary/device-hardware/cuda-core/) 和 [张量核心 (Tensor Core)](/gpu-glossary/device-hardware/tensor-core/) 提供的 [算术带宽 (Arithmetic Bandwidth)](/gpu-glossary/perf/arithmetic-bandwidth/) 得到充分利用。
+CPU 也能并发运行大量线程。但是 [线程束 (Warp)](/gpu-glossary/device-software/warp/) 之间的切换速度仅需一个时钟周期（比 CPU 的上下文切换快 1000 倍以上），这一能力由 SM 的 [线程束调度器 (Warp Scheduler)](/gpu-glossary/device-hardware/warp-scheduler/) 支持。丰富的可用 [线程束 (Warp)](/gpu-glossary/device-software/warp/) 资源与快速的 [线程束切换 (Warp Switch)](/gpu-glossary/device-hardware/warp-scheduler/) 速度有助于掩盖内存读取、线程同步或其他高开销指令带来的 [延迟 (Latency Hiding)](/gpu-glossary/perf/latency-hiding/)，从而确保由 [CUDA 核心 (CUDA Core)](/gpu-glossary/device-hardware/cuda-core/) 和 [Tensor Core](/gpu-glossary/device-hardware/tensor-core/) 提供的 [算术带宽 (Arithmetic Bandwidth)](/gpu-glossary/perf/arithmetic-bandwidth/) 得到充分利用。
 
 这种 [延迟隐藏 (Latency Hiding)](/gpu-glossary/perf/latency-hiding/) 正是 GPU 优势的核心。 CPU 则通过维护大型硬件管理缓存和复杂的指令预测来向终端用户和程序员隐藏延迟，而这些额外硬件会占用 CPU 的硅片面积、功耗和散热预算，从而限制了可用于计算的资源比例。
 

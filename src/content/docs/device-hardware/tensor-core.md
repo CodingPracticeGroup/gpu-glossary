@@ -1,6 +1,7 @@
 ---
 title: "什么是 Tensor Core？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 Tensor Core 也是一种 GPU [核心 (core)](/gpu-glossary/device-hardware/core/)，能够通过单条指令对整个矩阵进行操作。
@@ -56,14 +57,14 @@ HMMA.1688.F32 R24, R14, R18, R24  // 4
 
 后两条指令为 `a` 的后八列和 `b` 的后八行计算类似的"外积"，并与前两条指令的输出累加，最终得到 `c` 的值。
 
-换句话说：在 B 的八行八列块和 A 的整列范围内，张量核心（Tensor Core）会在指令执行期间并发进行多次乘法和加法运算，以实现矩阵乘法。每条指令处理给定 B 行列块对应的 A 的所有 `m` 行。它们共同完成完整的矩阵乘法。
+换句话说：在 B 的八行八列块和 A 的整列范围内，Tensor Core会在指令执行期间并发进行多次乘法和加法运算，以实现矩阵乘法。每条指令处理给定 B 行列块对应的 A 的所有 `m` 行。它们共同完成完整的矩阵乘法。
 
-如需深入探索，可在 [Godbolt 上查看此编译器输出](https://godbolt.org/z/e6cqn8491)。注意，这远非使张量核心 [利用率最大化](https://modal.com/blog/gpu-utilization-guide) 的矩阵乘法！相关实现可参阅 [Pranjal Shandkar 的工作日志](https://cudaforfun.substack.com/p/outperforming-cublas-on-h100-a-worklog)。
+如需深入探索，可在 [Godbolt 上查看此编译器输出](https://godbolt.org/z/e6cqn8491)。注意，这远非使Tensor Core [利用率最大化](https://modal.com/blog/gpu-utilization-guide) 的矩阵乘法！相关实现可参阅 [Pranjal Shandkar 的工作日志](https://cudaforfun.substack.com/p/outperforming-cublas-on-h100-a-worklog)。
 
-为实现Hopper和Blackwell张量核心的最大性能，无法仅使用纯 [CUDA C++](/gpu-glossary/host-software/cuda-c/) 编程，而需要同时使用 [PTX](/gpu-glossary/device-software/parallel-thread-execution/) 内部函数进行计算和内存操作。通常建议直接使用内核库中的现有内核，如 [cuBLAS (CUDA 基础线性代数子程序)](/gpu-glossary/host-software/cublas/)，或更高级的内核编程接口如 [CUTLASS (CUDA 线性代数子程序模板)](https://github.com/NVIDIA/cutlass) in C++ 或者 [CuTe DSL](/gpu-glossary/host-software/cute-dsl/) in Python。
+为实现Hopper和BlackwellTensor Core的最大性能，无法仅使用纯 [CUDA C++](/gpu-glossary/host-software/cuda-c/) 编程，而需要同时使用 [PTX](/gpu-glossary/device-software/parallel-thread-execution/) 内部函数进行计算和内存操作。通常建议直接使用内核库中的现有内核，如 [cuBLAS (CUDA 基础线性代数子程序)](/gpu-glossary/host-software/cublas/)，或更高层的内核编程接口，如 C++ 的 [CUTLASS（CUDA 线性代数子程序模板）](/gpu-glossary/host-software/cutlass/) 与 Python 的 [CuTe DSL](/gpu-glossary/host-software/cute-dsl/)。
 
-张量核心的规模比 [CUDA 核心 (CUDA Core)](/gpu-glossary/device-hardware/cuda-core/) 大得多，但数量少得多。H100 SXM5 每个 [SM](/gpu-glossary/device-hardware/streaming-multiprocessor/) 仅有四个张量核心（即每个 [线程束调度器 (Warp Scheduler)](/gpu-glossary/device-hardware/warp-scheduler/) 一个），但拥有数百个 [CUDA 核心 (CUDA Core)](/gpu-glossary/device-hardware/cuda-core/)。张量核心是 [Tensor Memory](/gpu-glossary/device-hardware/tensor-memory/) 的主要生产者和消费者。
+Tensor Core的规模比 [CUDA 核心 (CUDA Core)](/gpu-glossary/device-hardware/cuda-core/) 大得多，但数量少得多。H100 SXM5 每个 [SM](/gpu-glossary/device-hardware/streaming-multiprocessor/) 仅有四个Tensor Core（即每个 [线程束调度器 (Warp Scheduler)](/gpu-glossary/device-hardware/warp-scheduler/) 一个），但拥有数百个 [CUDA 核心 (CUDA Core)](/gpu-glossary/device-hardware/cuda-core/)。Tensor Core是 [Tensor Memory](/gpu-glossary/device-hardware/tensor-memory/) 的主要生产者和消费者。
 
-张量核心首次出现在 V100 GPU 中，极大提升了NVIDIA GPU对大型神经网络工作负载的适用性。更多信息参见 [NVIDIA 介绍 V100 的白皮书](https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf)。
+Tensor Core首次出现在 V100 GPU 中，极大提升了NVIDIA GPU对大型神经网络工作负载的适用性。更多信息参见 [NVIDIA 介绍 V100 的白皮书](https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf)。
 
-张量核心的内部结构尚未公开，且可能因 [SM 架构](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 不同而异。通常假设其为类似 TPU 的 systolic array（脉动阵列），但微基准测试文献中尚未达成共识。
+Tensor Core的内部结构尚未公开，且可能因 [SM 架构](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 不同而异。通常假设其为类似 TPU 的 systolic array（脉动阵列），但微基准测试文献中尚未达成共识。

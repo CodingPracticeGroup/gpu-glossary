@@ -1,6 +1,7 @@
 ---
 title: "计算受限的含义是什么？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 计算受限的 [内核 (Kernel)](/gpu-glossary/device-software/kernel/) 受限于 [CUDA 核心 (CUDA Core)](/gpu-glossary/device-hardware/cuda-core/) 或 [张量核心 (Tensor Core)](/gpu-glossary/device-hardware/tensor-core/) 的 [算术带宽 (arithmetic bandwidth)](/gpu-glossary/perf/arithmetic-bandwidth/)。
@@ -17,6 +18,6 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 让我们基于 [kipperrii](https://twitter.com/kipperrii) 的 [Transformer 推理算术](https://kipp.ly/transformer-inference-arithmetic) 框架做一个简单估算，对计算受限的 Transformer 语言模型推理的最小令牌间延迟（inter-token latency，即每个输出令牌的生成时间）进行简单估算。假设某个模型有 5000 亿参数，以 16 位精度存储，总计 1 TB。每个批处理元素需执行约1万亿次浮点运算（每个参数一次乘法和一次累加）。在具有 16 位矩阵运算的 1 petaFLOP/s [算术带宽 (arithmetic bandwidth)](/gpu-glossary/perf/arithmetic-bandwidth/) 的 GPU 上运行，在计算受限的假设下，每个批处理元素的最小令牌间延迟为 1 毫秒。
 
-需要注意的是，要使该 GPU 在批次大小为 1 时达到计算受限，需要具备 1 PB/s 的 [内存带宽 (memory bandwidth)](/gpu-glossary/perf/memory-bandwidth/)（以便在 1 毫秒内加载全部 1 TB 权重）。当代 [内存带宽 (memory bandwidth)](/gpu-glossary/perf/memory-bandwidth/) 在 TB/s 量级，因此需要数百个输入组成的批处理才能提供足够的 [算术强度 (arithmetic intensity)](/gpu-glossary/perf/arithmetic-intensity/) 使执行过程进入计算受限状态。。
+需要注意的是，要使该 GPU 在批次大小为 1 时达到计算受限，需要具备 1 PB/s 的 [内存带宽 (memory bandwidth)](/gpu-glossary/perf/memory-bandwidth/)（以便在 1 毫秒内加载全部 1 TB 权重）。当代 [内存带宽 (memory bandwidth)](/gpu-glossary/perf/memory-bandwidth/) 在 TB/s 量级，因此需要数百个输入组成的批处理才能提供足够的 [算术强度 (arithmetic intensity)](/gpu-glossary/perf/arithmetic-intensity/) 使执行过程进入计算受限状态。
 
 有关 LLM 推理的更多信息，请参阅我们的 [LLM 工程师指南](https://modal.com/llm-almanac/summary)。

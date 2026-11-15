@@ -14,7 +14,7 @@
 | GPU | GPU | 不译 |
 | host / device | 主机 / 设备 | 首次出现注明 NVIDIA 语境中的含义 |
 | CUDA core | CUDA 核心 | |
-| Tensor Core | Tensor Core | 专有硬件名，保留英文 |
+| Tensor Core | Tensor Core | 专有硬件名，正文保留英文，不用"张量核心" |
 | Streaming Multiprocessor (SM) | 流式多处理器 (SM) | 上下文已明确时可用 "SM" |
 | thread | 线程 | |
 | warp | 线程束 (warp) | 首次出现保留英文 |

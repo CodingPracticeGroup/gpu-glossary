@@ -1,6 +1,7 @@
 ---
 title: "什么是 CUDA 设备架构？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 CUDA 全称是 _Compute Unified Device Architecture_（统一计算设备架构）。  
@@ -16,7 +17,7 @@ CUDA 的设计愿景在 [Lindholm 等人于 2008 年](https://www.cs.cmu.edu/afs
 ![](/gpu-glossary/images/light-fixed-pipeline-g71.svg)
 > 固定流水线设备架构 (G71) 示意图。请注意存在用于处理片段和顶点着色的独立处理器组。改编自 [Fabien Sanglard 的博客](https://fabiensanglard.net/cuda/)。
 
-采用统一架构的 GPU 设备则要简单得多：其硬件单元完全统一，每个单元都能够执行多种计算任务。这些单元被称为 [流式多处理器 (SM)](/gpu-glossary/device-hardware/streaming-multiprocessor/) ，它们的主要子组件包括 [CUDA 核心](/gpu-glossary/device-hardware/cuda-core/) 以及（较新型号的 GPU ）[张量核心](/gpu-glossary/device-hardware/tensor-core/)。
+采用统一架构的 GPU 设备则要简单得多：其硬件单元完全统一，每个单元都能够执行多种计算任务。这些单元被称为 [流式多处理器 (SM)](/gpu-glossary/device-hardware/streaming-multiprocessor/) ，它们的主要子组件包括 [CUDA 核心](/gpu-glossary/device-hardware/cuda-core/) 以及（较新型号的 GPU ）[Tensor Core](/gpu-glossary/device-hardware/tensor-core/)。
 
 ![](/gpu-glossary/images/light-cuda-g80.svg)
 > 统一计算设备架构 (G80) 示意图。请注意图中没有区分不同的处理器类型——所有有意义的计算均由图中央相同的 [流式多处理器](/gpu-glossary/device-hardware/streaming-multiprocessor/) 完成，这些处理器接收来自顶点、几何和像素线程的指令。修改自 [Peter Glazkowsky 2009 年关于 Fermi 架构的白皮书](https://www.nvidia.com/content/pdf/fermi_white_papers/p.glaskowsky_nvidia%27s_fermi-the_first_complete_gpu_architecture.pdf)。

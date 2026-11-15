@@ -1,6 +1,7 @@
 ---
 title: "什么是 CUDA 线程块？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 ![](/gpu-glossary/images/light-cuda-programming-model.svg)  
@@ -11,4 +12,4 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 在 [CUDA 编程模型](/gpu-glossary/device-software/cuda-programming-model/) 中，线程块是向程序员暴露的最小线程协作单元。线程块必须独立执行，因此任何线程块的执行顺序都是有效的，既可以是完全串行的（以任意顺序），也可以是所有可能的交错执行方式。
 
-单个 CUDA [内核 (kernel)](/gpu-glossary/device-software/kernel/) 启动会产生一个或多个线程块（以 [线程块网格 (thread block grid)](/gpu-glossary/device-software/thread-block-grid/) 的形式），每个线程块包含一个或多个 [线程束 (warp)](/gpu-glossary/device-software/warp/)。线程块的大小可以是任意的，但通常是 [线程束](/gpu-glossary/device-software/warp/) 大小的倍数（在所有当前的 CUDA GPU 上为 32）。
+单个 CUDA [内核 (kernel)](/gpu-glossary/device-software/kernel/) 启动会产生一个或多个线程块（以 [线程块网格 (thread block grid)](/gpu-glossary/device-software/thread-block-grid/) 的形式），每个线程块包含一个或多个 [线程束 (warp)](/gpu-glossary/device-software/warp/)。线程块的大小可以是任意的（当前设备上的上限为 1024），但通常是 [线程束](/gpu-glossary/device-software/warp/) 大小的倍数（当前所有 CUDA GPU 上均为 32）。
