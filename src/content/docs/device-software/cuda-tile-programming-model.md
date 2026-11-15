@@ -12,7 +12,7 @@ CUDA Tile 编程模型是一种面向 NVIDIA GPU 的、基于分块（Tile-based
 
 该编程模型不适合最新的 [SM](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 架构的 GPU。在这些新型 GPU 中，绝大部分的[算术带宽（Arithmetic Bandwidth）](/gpu-glossary/perf/arithmetic-bandwidth/) 都集中在 [Tensor Core](/gpu-glossary/device-hardware/tensor-core/) 上。Tensor Core 只能执行矩阵乘法，并且必须通过线程（[thread](/gpu-glossary/device-software/thread/)）级的指令和异步性来进行编程，这与用于对硬件其余部分进行编程的线程束 ([warp](/gpu-glossary/device-software/warp/)) 级异步性大不相同。
 
-在 CUDA Tile 编程模型中，程序是在 Tile 核函数 (Tile-kernels) 的级别上进行表达的。这些核函数是程序实例，在由 Tile 块 (Tile blocks) 组成的网格（Grid）上并发运行，其中每个 Tile 块都是一个独立的执行线程。在理想情况下（Happy path），Tile 核函数运行在 结构化指针 (Structured pointers) 上，这种指针将传统指针与数组的信息结合在了一起：包括其完整范围（shape）和访问模式（stride）。这与 [CuTe](/gpu-glossary/host-software/cute/) 类型系统中用于 `Layout` 和 `Tensor` 的机制非常相似。
+在 CUDA Tile 编程模型中，程序是在 Tile 内核 (Tile-kernels) 的级别上进行表达的。这些内核是程序实例，在由 Tile 块 (Tile blocks) 组成的网格（Grid）上并发运行，其中每个 Tile 块都是一个独立的执行线程。在理想情况下（Happy path），Tile 内核运行在 结构化指针 (Structured pointers) 上，这种指针将传统指针与数组的信息结合在了一起：包括其完整范围（shape）和访问模式（stride）。这与 [CuTe](/gpu-glossary/host-software/cute/) 类型系统中用于 `Layout` 和 `Tensor` 的机制非常相似。
 
 与 CUDA C/C++ 和 PTX IR 中的传统 “CUDA SIMT” 一样，这种编程模型同样由高级语言和中间表示所共享——在这里，对应的中间表示是 [Tile IR](https://docs.nvidia.com/cuda/tile-ir/latest/sections/prog_model.html)。
 

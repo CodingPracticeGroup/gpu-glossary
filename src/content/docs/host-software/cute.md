@@ -9,11 +9,11 @@ CUDA 模板库 (CUDA Templates, CuTe) 是 [CUTLASS](/gpu-glossary/host-software/
 
 CuTe 类型系统的核心是 `Layouts`。 `Layouts` 描述了对 CuTe `Tensors` 进行常规访问的模式。而 `Tensors` 则将 `Layouts` 与指向 [内存](/gpu-glossary/device-software/memory-hierarchy/) 的指针结合在了一起。至关重要的是，这些 `Layouts` 具有可组合性 (Composable)——它们构成了一个范畴 [category](https://arxiv.org/abs/2601.05972)，并拥有丰富的代数结构 [rich algebra](https://arxiv.org/abs/2603.02298)，从而将强大的表达能力与结构化完美结合。需要说明的是，`Layout` 本身是由 `Shape` 和 `Stride` 元组构成的，用于描述内存的维度范围以及如何遍历它们。
 
-CuTe 利用类型系统来编码关键的程序元数据（如内存组织形式、步长访问和分块等），使得 [编译器](/gpu-glossary/host-software/nvcc/) 在应用优化时，能够检查正确性的方方面面并维持不变性。这使得开发者可以在不牺牲性能的前提下，对核函数 [kernels](/gpu-glossary/device-software/kernel/) 进行非常高级的元编程。例如，同一个模板可以被编译成跨越多种流式多处理器架构 [Streaming Multiprocessor architectures](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 的高性能优化核函数。由于布局在编译期就已经解析完毕，内存访问带来了“零”额外的运行期开销，否则这种开销可能会直接摧毁内存受限型 [memory-bound](/gpu-glossary/perf/memory-bound/) 工作负载的性能 [performance](/gpu-glossary/perf/)。
+CuTe 利用类型系统来编码关键的程序元数据（如内存组织形式、步长访问和分块等），使得 [编译器](/gpu-glossary/host-software/nvcc/) 在应用优化时，能够检查正确性的方方面面并维持不变性。这使得开发者可以在不牺牲性能的前提下，对内核 [kernels](/gpu-glossary/device-software/kernel/) 进行非常高级的元编程。例如，同一个模板可以被编译成跨越多种流式多处理器架构 [Streaming Multiprocessor architectures](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 的高性能优化内核。由于布局在编译期就已经解析完毕，内存访问带来了“零”额外的运行期开销，否则这种开销可能会直接摧毁内存受限型 [memory-bound](/gpu-glossary/perf/memory-bound/) 工作负载的性能 [performance](/gpu-glossary/perf/)。
 
 欲了解更多细节，请参阅 NVIDIA 的 [CuTe 官方文档](https://docs.nvidia.com/cutlass/4.4.2/media/docs/cpp/cute/index.html)。
 
-下方展示了一个基于 CuTe 的矩阵转置核函数（该代码基于 [Colfax International](https://research.colfax-intl.com/tutorial-matrix-transpose-in-cutlass/) 的这篇文章中的初始“朴素”实现）。它演示了 CuTe 的核心特性与类型——模板、形状、布局和张量。您可以使用 [这个 Modal Notebook](https://modal.com/notebooks/modal-labs/examples/nb-owEUD0kdSVeL4KeEX5sjh1) 在 H100 GPU 上运行它。
+下方展示了一个基于 CuTe 的矩阵转置内核（该代码基于 [Colfax International](https://research.colfax-intl.com/tutorial-matrix-transpose-in-cutlass/) 的这篇文章中的初始“朴素”实现）。它演示了 CuTe 的核心特性与类型——模板、形状、布局和张量。您可以使用 [这个 Modal Notebook](https://modal.com/notebooks/modal-labs/examples/nb-owEUD0kdSVeL4KeEX5sjh1) 在 H100 GPU 上运行它。
 
 ```
 // one CuTe trick: transpose a row-major matrix just using Layouts

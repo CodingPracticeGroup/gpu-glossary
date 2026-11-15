@@ -1,9 +1,10 @@
 ---
 title: "CUDA 二进制工具是什么？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
-CUDA二进制工具集（CUDA Binary Utilities）是一套用于检查二进制文件内容的工具集合，例如由 [NVIDIA CUDA 编译器驱动程序 (nvcc)](/gpu-glossary/host-software/nvcc/) 输出的文件。
+CUDA 二进制工具集（CUDA Binary Utilities）是一套用于检查二进制文件内容的工具集合，例如由 [NVIDIA CUDA 编译器驱动程序 (nvcc)](/gpu-glossary/host-software/nvcc/) 输出的文件。
 
 其中一个工具 `cuobjdump` 可用于检查和操作整个主机二进制文件，或者通常嵌入在这些二进制文件中的 CUDA 特定 `cubin` 文件。
 

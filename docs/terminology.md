@@ -21,7 +21,7 @@
 | warpgroup | 线程组 (warpgroup) | |
 | thread block | 线程块 | |
 | grid | 线程块网格 | |
-| kernel | 核函数 | |
+| kernel | 内核（kernel） | 沿用原译定名全站统一；与 OS kernel 靠上下文区分，必要时括注英文 |
 | cooperative thread array (CTA) | 协作线程数组 (CTA) | 与"线程块"对应关系按原文说明 |
 | shared memory | 共享内存 | |
 | global memory | 全局内存 | |

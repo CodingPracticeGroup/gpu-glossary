@@ -23,5 +23,5 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 GPU 术语表的这一部分汇集并定义了优化 GPU 程序性能所需理解的关键术语。大
 致来说，当你使用 [NSight Compute](https://developer.nvidia.com/nsight-compute)
-调试 GPU [核函数（kernel）](/gpu-glossary/device-software/kernel/)的性能问
+调试 GPU [内核（kernel）](/gpu-glossary/device-software/kernel/)的性能问
 题时遇到的术语，这里应当都有所覆盖。
