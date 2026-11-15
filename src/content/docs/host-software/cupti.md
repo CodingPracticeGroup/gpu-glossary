@@ -1,9 +1,10 @@
 ---
-title: "什么是 NVIDIA CUDA 性能分析工具接口？(CUPTI)"
-status: unreviewed
+title: "什么是 NVIDIA CUDA 性能分析工具接口？（CUPTI）"
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
-NVIDIA CUDA性能分析工具接口（CUDA Profiling Tools Interface，简称 CUPTI）提供了一套API，用于分析在 GPU 上执行的 [CUDA C++](/gpu-glossary/host-software/cuda-c/)、[PTX](/gpu-glossary/device-software/parallel-thread-execution/) 和 [SASS](/gpu-glossary/device-software/streaming-assembler/) 代码的执行情况。关键在于，它能同步 CPU 主机和 GPU 设备之间的时间戳，确保性能数据的准确性。
+NVIDIA CUDA 性能分析工具接口（CUDA Profiling Tools Interface，简称 CUPTI）提供了一组用于对 GPU 上执行的 [CUDA C++](/gpu-glossary/host-software/cuda-c/)、[PTX](/gpu-glossary/device-software/parallel-thread-execution/) 和 [SASS](/gpu-glossary/device-software/streaming-assembler/) 代码的执行做性能分析的 API。关键在于，它能同步 CPU 主机与 GPU 设备之间的时间戳。
 
 CUPTI 的接口被诸如 [NSight Systems 性能分析器](/gpu-glossary/host-software/nsight-systems/) 和 [PyTorch Profiler](https://modal.com/docs/examples/torch_profiling) 等工具所使用。
 

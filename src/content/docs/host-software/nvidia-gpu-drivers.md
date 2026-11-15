@@ -1,6 +1,7 @@
 ---
 title: "什么是 NVIDIA GPU 驱动程序？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 NVIDIA GPU 驱动程序负责协调主机程序或主机操作系统与 GPU 设备之间的交互。  
@@ -8,6 +9,6 @@ NVIDIA GPU 驱动程序负责协调主机程序或主机操作系统与 GPU 设�
 
 ![](/gpu-glossary/images/light-cuda-toolkit.svg)  
 
-> CUDA 工具包示意图。而 NVIDIA GPU 驱动程序是唯一直接与 GPU 通信的组件。改编自《Professional CUDA C Programming Guide》。  
+> CUDA 工具包示意图。NVIDIA GPU 驱动程序是唯一直接与 GPU 通信的组件。改编自《Professional CUDA C Programming Guide》。  
 
 NVIDIA 已开源其 Linux Open GPU [内核模块](/gpu-glossary/host-software/nvidia-ko/) 的[源代码](https://github.com/NVIDIA/open-gpu-kernel-modules)。

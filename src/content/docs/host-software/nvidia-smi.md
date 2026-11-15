@@ -1,9 +1,10 @@
 ---
 title: "什么是 nvidia-smi？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
-这个命令行实用程序用于查询和管理由 [NVML](/gpu-glossary/host-software/nvml/) 管理库暴露的 GPU 状态。其输出（如下所示样本）对于 NVIDIA GPU 用户来说非常熟悉，甚至被戏称为 GPU 界的 [Hello World](https://x.com/boborado/status/1752724223934578760)。
+这个命令行实用程序用于查询和管理由 [NVML](/gpu-glossary/host-software/nvml/) 管理库暴露的 GPU 状态。其输出（示例见下方）对 NVIDIA GPU 用户而言熟悉到近乎成了一个 [梗](https://x.com/boborado/status/1752724223934578760)。
 
 `nvidia-smi` 报告以下信息：
 
@@ -13,9 +14,9 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 有关这些指标的详细说明（包括如何解读功率和温度读数），请参见 [Modal 文档中的这个页面](https://modal.com/docs/guide/gpu-metrics)。
 
-`nvidia-smi` 还可以列出当前使用 GPU 的进程（`-q`、`--query`、`pmon` 参数）。常见的管理任务包括设置持久模式（`-pm`）、计算模式（`-c`）、功耗限制（`-pl`）、应用/锁定时钟（`-ac`、`-lgc`、`-lmc`）以及执行 GPU 重置（`-r`）。
+`nvidia-smi` 还可以列出当前使用 GPU 的进程（`-q`、`--query`、`pmon`）。常见的管理任务包括设置持久模式（`-pm`）、计算模式（`-c`）、功耗限制（`-pl`）、应用/锁定时钟（`-ac`、`-lgc`、`-lmc`）以及执行 GPU 重置（`-r`）。
 
-输出可以格式化为人类可读的文本或 XML（`-x` 参数）。虽然 `nvidia-smi` 的文本输出格式不保证稳定，但底层的 [NVML C 库](/gpu-glossary/host-software/nvml/) 为工具开发提供了稳定的 API。
+输出可以格式化为人类可读的文本或 XML（`-x`）。虽然 `nvidia-smi` 的文本输出格式不保证稳定，但底层的 [NVML C 库](/gpu-glossary/host-software/nvml/) 为工具开发提供了稳定的 API。
 
 `nvidia-smi` 的文档可以在 [这里](https://docs.nvidia.com/deploy/nvidia-smi/) 找到，官方 Python 绑定可以在 [这里](http://pypi.python.org/pypi/nvidia-ml-py/) 找到。
 

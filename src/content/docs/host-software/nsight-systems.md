@@ -1,6 +1,7 @@
 ---
 title: "什么是 NVIDIA Nsight Systems？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 NVIDIA Nsight Systems 是一款用于 [CUDA C++](/gpu-glossary/host-software/cuda-c/) 程序的性能调试工具。它在图形界面（GUI）中整合了性能分析、追踪和专家系统分析功能。
