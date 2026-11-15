@@ -13,7 +13,7 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 短记分板停顿 (Short Scoreboard Stall)
 当某条指令正在等待一个未离开流式多处理器 [Streaming Multiprocessor (SM)](/gpu-glossary/device-hardware/streaming-multiprocessor/) 的可变延迟指令的结果时，就会发生短记分板停顿。例如：
 * 在特殊功能单元 ([Special Function Unit](/gpu-glossary/device-hardware/special-function-unit/)) 上执行的慢速数学指令（如 `MUFU.EX2` 和 `MUFU.SQRT`）。
-* 在张量核心 (Tensor Core) 上执行的矩阵乘法（如 MMA）。
+* 在Tensor Core 上执行的矩阵乘法（如 MMA）。
 * 共享内存 (Shared Memory) 操作（如 `LDS` 和 `STS`）。
 
 长记分板停顿 (Long Scoreboard Stall)

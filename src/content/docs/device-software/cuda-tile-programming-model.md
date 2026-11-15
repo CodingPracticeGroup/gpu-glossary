@@ -9,7 +9,7 @@ CUDA Tile 编程模型是一种面向 NVIDIA GPU 的、基于分块（Tile-based
 
 该编程模型是为“统一”的[硬件底层架构](/gpu-glossary/device-hardware/cuda-device-architecture/)（即 CUDA 中的 “U”，Unified）而定义的。也就是说，由同质的流式多处理器 ([Streaming Multiprocessors (SMs)](/gpu-glossary/device-hardware/streaming-multiprocessor/)) 和同质的 CUDA 核心 ([CUDA Cores](/gpu-glossary/device-hardware/cuda-core/)) 来实现绝大多数操作，而不是像 CUDA 问世前的通用图形编程那样，由性质各异的专用核心组成并进行异构编程。
 
-该编程模型不适合最新的 [SM](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 架构的 GPU。在这些新型 GPU 中，绝大部分的算术带宽 [Arithmetic Bandwidth](/gpu-glossary/perf/arithmetic-bandwidth/) 都集中在张量核心 ([Tensor Cores](/gpu-glossary/device-hardware/tensor-core/)) 上。Tensor Core 只能执行矩阵乘法，并且必须通过线程（[thread](/gpu-glossary/device-software/thread/)）级的指令和异步性来进行编程，这与用于对硬件其余部分进行编程的线程束 ([warp](/gpu-glossary/device-software/warp/)) 级异步性大不相同。
+该编程模型不适合最新的 [SM](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 架构的 GPU。在这些新型 GPU 中，绝大部分的算术带宽 [Arithmetic Bandwidth](/gpu-glossary/perf/arithmetic-bandwidth/) 都集中在Tensor Core ([Tensor Cores](/gpu-glossary/device-hardware/tensor-core/)) 上。Tensor Core 只能执行矩阵乘法，并且必须通过线程（[thread](/gpu-glossary/device-software/thread/)）级的指令和异步性来进行编程，这与用于对硬件其余部分进行编程的线程束 ([warp](/gpu-glossary/device-software/warp/)) 级异步性大不相同。
 
 在 CUDA Tile 编程模型中，程序是在 Tile 核函数 (Tile-kernels) 的级别上进行表达的。这些核函数是程序实例，在由 Tile 块 (Tile blocks) 组成的网格（Grid）上并发运行，其中每个 Tile 块都是一个独立的执行线程。在理想情况下（Happy path），Tile 核函数运行在 结构化指针 (Structured pointers) 上，这种指针将传统指针与数组的信息结合在了一起：包括其总维度（Shape）和访问模式（Stride）。这与 [CuTe](/gpu-glossary/host-software/cute/) 类型系统中用于 `Layout` 和 `Tensor` 的机制非常相似。
 

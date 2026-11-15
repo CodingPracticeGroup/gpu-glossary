@@ -10,7 +10,7 @@ Tensor Core 也是一种 GPU [核心 (core)](/gpu-glossary/device-hardware/core/
 
 > H100 流式多处理器（SM）的内部架构图。注意 Tensor Core 数量更少但尺寸更大。改编自 NVIDIA 的 [H100 白皮书](https://modal-cdn.com/gpu-glossary/gtc22-whitepaper-hopper.pdf)。
 
-单条指令操作更多数据，可显著降低功耗需求，从而释放更高性能（参见 NVIDIA 首席科学家 Bill Dally 的 [这个演讲](https://youtu.be/kLiwvnr4L80?t=868) 自 Volta 架构引入 [流式多处理器 (Streaming Multiprocessor, SM)](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 以来，Tensor Core 已成为在 NVIDIA GPU 上实现最高 [算术吞吐量 (arithmetic throughput)](/gpu-glossary/perf/arithmetic-bandwidth/) 的唯一途径 —— 其提供的每秒浮点运算能力是 [CUDA 核心 (CUDA Core)](/gpu-glossary/device-hardware/cuda-core/) 的 100 倍。
+单条指令操作更多数据，可显著降低功耗需求，从而释放更高性能（参见 NVIDIA 首席科学家 Bill Dally 的 [这个演讲](https://youtu.be/kLiwvnr4L80?t=868)）。自在 Volta 一代的 [流式多处理器 (Streaming Multiprocessor, SM) 架构](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 中引入以来，Tensor Core 已成为在 NVIDIA GPU 上实现最高 [算术吞吐量 (arithmetic throughput)](/gpu-glossary/perf/arithmetic-bandwidth/) 的唯一途径 —— 其提供的每秒浮点运算能力是 [CUDA 核心 (CUDA Core)](/gpu-glossary/device-hardware/cuda-core/) 的 100 倍。
 
 例如，`HMMA16.16816.F32` [SASS](/gpu-glossary/device-software/streaming-assembler/) 指令会计算 D = AB + C（其中A， B，C 和 D 是矩阵，矩阵 C 通常与 D 是同一物理矩阵）。`MMA` 代表矩阵乘法和累加 (Matrix Multiply and Accumulate) 。`HMMA16` 表示输入为半精度（`16` 位），`F32` 表示输出累加到 `32` 位（即单精度）浮点数中。
 

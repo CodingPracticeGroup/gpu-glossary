@@ -14,6 +14,6 @@ CUDA 线性代数子程序与求解器模板库 (CUDA Templates for Linear Algeb
 在 CuTe 之上，CUTLASS 提供了一个仅包含头文件的 CUDA C++ 库，该库在三个级别上运行：整个设备（`device`）、单个核函数 [kernel](/gpu-glossary/device-software/kernel/) 或 [threads](/gpu-glossary/device-software/thread/) 集合（`collective`，通常为一个 [thread block](/gpu-glossary/device-software/thread-block/)）。在 `collective` 层中，矩阵与矩阵的乘法通常被分为“主循环 (Mainloops)”和“尾部处理 (Epilogues)”。
 主循环负责表达核心算法（例如分块策略）；尾部处理则描述后处理步骤，例如应用缩放因子或标量非线性变换（这在神经网络中非常流行）。
 
-CUTLASS 经常被用来编写一些性能极高的核函数，尤其是针对较新 [Streaming Multiprocessor architectures](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 硬件上的矩阵乘法。这些核函数需要对张量核心 [Tensor Cores](/gpu-glossary/device-hardware/tensor-core/) 进行精细的编程，才能达到接近峰值的性能 [performance](/gpu-glossary/perf/)。
+CUTLASS 经常被用来编写一些性能极高的核函数，尤其是针对较新 [Streaming Multiprocessor architectures](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 硬件上的矩阵乘法。这些核函数需要对Tensor Core [Tensor Cores](/gpu-glossary/device-hardware/tensor-core/) 进行精细的编程，才能达到接近峰值的性能 [performance](/gpu-glossary/perf/)。
 
 CUTLASS 是 开源的，可以在 [GitHub](https://github.com/nvidia/cutlass) 上获取。该库还包含了许多使用 CUTLASS 实现的高性能开源核函数，这些函数经常作为其他开源核函数开发时的参考。我们强烈推荐 [Colfax International 的 Jay Shah 撰写的热门教程](https://research.colfax-intl.com/)，它们详细解释了如何利用 CUTLASS 的核心组件来实现最大性能。不过需要注意的是，与大多数 C++ 模板元编程一样，CUTLASS 绝非浅尝辄止者所能轻易掌握的！

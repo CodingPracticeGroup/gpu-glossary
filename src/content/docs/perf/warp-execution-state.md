@@ -30,6 +30,6 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 当线程束因访问共享内存或因执行长时间运行的算术指令而停滞时，我们称其停滞在"短计分板（short scoreboard）"上。当因访问 GPU 内存而停滞时，则称为停滞在"长记分板（long scoreboard）"。 这两种停顿都被称为记分板停滞 ([Scoreboard Stalls](/gpu-glossary/perf/scoreboard-stall/))。
 
-在上图中，每个周期的多个槽位中都出现了停滞的 [线程束](/gpu-glossary/device-software/warp/)。停滞的 [线程束](/gpu-glossary/device-software/warp/) 本身并不一定是坏事——大量并发停滞的 [线程束](/gpu-glossary/device-software/warp/) 可能是 [隐藏延迟](/gpu-glossary/perf/latency-hiding/) 所必需的，这些延迟来自长时间运行的指令，如内存加载或像 `HMMA` 这样的 [张量核心](/gpu-glossary/device-hardware/tensor-core/) 指令，这些指令 [可能运行数十个周期](https://arxiv.org/abs/2206.02874)。
+在上图中，每个周期的多个槽位中都出现了停滞的 [线程束](/gpu-glossary/device-software/warp/)。停滞的 [线程束](/gpu-glossary/device-software/warp/) 本身并不一定是坏事——大量并发停滞的 [线程束](/gpu-glossary/device-software/warp/) 可能是 [隐藏延迟](/gpu-glossary/perf/latency-hiding/) 所必需的，这些延迟来自长时间运行的指令，如内存加载或像 `HMMA` 这样的 [Tensor Core](/gpu-glossary/device-hardware/tensor-core/) 指令，这些指令 [可能运行数十个周期](https://arxiv.org/abs/2206.02874)。
 
 *已选择的 (selected)* [线程束](/gpu-glossary/device-software/warp/) 是指在当前周期已被 [线程束调度器](/gpu-glossary/device-hardware/warp-scheduler/) 选中接收指令的就绪 [线程束](/gpu-glossary/device-software/warp/) 。每个周期，[线程束调度器](/gpu-glossary/device-hardware/warp-scheduler/) 都会查看其就绪 [线程束](/gpu-glossary/device-software/warp/) 资源池，如果存在任何符合条件的线程束，则选择一个并向其发射一条指令。每个存在就绪 [线程束](/gpu-glossary/device-software/warp/) 的周期中，都有一个已选择的 [线程束](/gpu-glossary/device-software/warp/)。在 [活跃周期](/gpu-glossary/perf/active-cycle/) 中，某个 [线程束](/gpu-glossary/device-software/warp/) 被选中并发射指令的比例就是 [发射效率](/gpu-glossary/perf/issue-efficiency/)。

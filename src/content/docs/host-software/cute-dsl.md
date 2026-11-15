@@ -64,6 +64,6 @@ i = block_x * block_dim_x + thread_x
 
 在撰写本文时，在 CUTLASS 4.x 中，编译技术栈在执行前会先通过多级中间表示 [Multi-Level Intermediate Representation (MLIR)](https://mlir.llvm.org/) 转换为 [PTX](/gpu-glossary/device-software/parallel-thread-execution/) IR，然后再转换为特定于设备的 [SASS](/gpu-glossary/device-software/streaming-assembler/) 汇编。
 
-以 [FlashAttention-4](https://arxiv.org/abs/2603.05451) 核函数为例。我们 [文章](https://modal.com/blog/reverse-engineer-flash-attention-4) 中对该开源代码进行了拆解分析，详细介绍了它如何通过流水线化的序列线程束（Pipelined Warp Specialization）、张量核心 [Tensor Core](/gpu-glossary/device-hardware/tensor-core/) 操作，以及张量内存 [Tensor Memory](/gpu-glossary/device-hardware/tensor-memory/) 和 张量内存加速器 [Tensor Memory Accelerator](/gpu-glossary/device-hardware/tensor-memory-accelerator/) 操作，直接利用 CuTe DSL 实现了顶级的尖端性能。
+以 [FlashAttention-4](https://arxiv.org/abs/2603.05451) 核函数为例。我们 [文章](https://modal.com/blog/reverse-engineer-flash-attention-4) 中对该开源代码进行了拆解分析，详细介绍了它如何通过流水线化的序列线程束（Pipelined Warp Specialization）、Tensor Core [Tensor Core](/gpu-glossary/device-hardware/tensor-core/) 操作，以及张量内存 [Tensor Memory](/gpu-glossary/device-hardware/tensor-memory/) 和 张量内存加速器 [Tensor Memory Accelerator](/gpu-glossary/device-hardware/tensor-memory-accelerator/) 操作，直接利用 CuTe DSL 实现了顶级的尖端性能。
 
 欲了解更多关于 CuTe DSL 的细节，请参阅 NVIDIA 的 [CuTe DSL documentation](https://docs.nvidia.com/cutlass/4.4.2/media/docs/pythonDSL/cute_dsl.html) 以及 [CuTe DSL overview blog](https://developer.nvidia.com/blog/achieve-cutlass-c-performance-with-python-apis-using-cute-dsl/)。

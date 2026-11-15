@@ -78,4 +78,4 @@ __global__ void mm(float* A, float* B, float* C, int N) {
 
 不过，这距离完全优化的矩阵乘法内核仍有差距。[Anthropic 的 Si Boehm 的这篇工作日志](https://siboehm.com/articles/22/CUDA-MMM) 详细介绍了进一步优化方法，这些优化能进一步提高浮点运算与内存读取的比率，并让算法与硬件特性更紧密地匹配。我们目前讨论的内核类似于他文中的 Kernel 1 和 Kernel 3，而该工作记录共涵盖了十种内核优化方案。
 
-需要注意的是，该工作记录和本文均只讨论在 [CUDA 核心](/gpu-glossary/device-hardware/cuda-core/) 上执行的内核编写。实际上，速度最快的矩阵乘法内核运行在 [张量核心](/gpu-glossary/device-hardware/tensor-core/) 上，后者具有更高的 [算术带宽](/gpu-glossary/perf/arithmetic-bandwidth/)。
+需要注意的是，该工作记录和本文均只讨论在 [CUDA 核心](/gpu-glossary/device-hardware/cuda-core/) 上执行的内核编写。实际上，速度最快的矩阵乘法内核运行在 [Tensor Core](/gpu-glossary/device-hardware/tensor-core/) 上，后者具有更高的 [算术带宽](/gpu-glossary/perf/arithmetic-bandwidth/)。

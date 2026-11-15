@@ -4,7 +4,7 @@ status: reviewed
 reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
-计算受限的 [内核 (Kernel)](/gpu-glossary/device-software/kernel/) 受限于 [CUDA 核心 (CUDA Core)](/gpu-glossary/device-hardware/cuda-core/) 或 [张量核心 (Tensor Core)](/gpu-glossary/device-hardware/tensor-core/) 的 [算术带宽 (arithmetic bandwidth)](/gpu-glossary/perf/arithmetic-bandwidth/)。
+计算受限的 [内核 (Kernel)](/gpu-glossary/device-software/kernel/) 受限于 [CUDA 核心 (CUDA Core)](/gpu-glossary/device-hardware/cuda-core/) 或 [Tensor Core](/gpu-glossary/device-hardware/tensor-core/) 的 [算术带宽 (arithmetic bandwidth)](/gpu-glossary/perf/arithmetic-bandwidth/)。
 
 ![](/gpu-glossary/images/light-roofline-model.svg)
 

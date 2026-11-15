@@ -1,6 +1,7 @@
 ---
 title: "什么是全局内存？"
-status: unreviewed
+status: reviewed
+reviewer: ai-review
 upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 ---
 ![](/gpu-glossary/images/light-cuda-programming-model.svg)  
@@ -9,7 +10,7 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 作为 [CUDA 编程模型](/gpu-glossary/device-software/cuda-programming-model/) 的一部分，[线程层次结构](/gpu-glossary/device-software/thread-hierarchy/) 的每个层级都可以访问 [内存层次结构](/gpu-glossary/device-software/memory-hierarchy/) 中对应的内存。这些内存可用于协调和通信，并由程序员（而非硬件或运行时）管理。
 
-内存层次结构的最高级别是 (Global Memory)。全局内存在其作用域和生命周期上都是全局的。也就是说， [线程块网格](/gpu-glossary/device-software/thread-block-grid/) 中的每个 [线程](/gpu-glossary/device-software/thread/) 都可以访问它，并且其生命周期与程序执行时间一样长。
+内存层次结构的最高层级是全局内存（Global Memory）。全局内存在其作用域和生命周期上都是全局的。也就是说， [线程块网格](/gpu-glossary/device-software/thread-block-grid/) 中的每个 [线程](/gpu-glossary/device-software/thread/) 都可以访问它，并且其生命周期与程序执行时间一样长。
 
 类似于 CPU 内存的同步方式，对全局内存中数据结构的访问可以使用原子指令在所有访问者之间同步。在 [协作线程数组](/gpu-glossary/device-software/cooperative-thread-array/) 内，可以通过屏障等方式进行更紧密的同步。
 

@@ -40,4 +40,4 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 更一般地说，占用率衡量的是 GPU 同时处理其最大并行任务的比例，这在大多数内核中并非优化的固有目标。相反，如果是 [计算受限](/gpu-glossary/perf/compute-bound/)，我们希望最大化计算资源的 [利用率](/gpu-glossary/perf/pipe-utilization/)；如果是 [内存受限](/gpu-glossary/perf/memory-bound/)，我们希望最大化内存资源的利用率。
 
-特别是，在 Hopper 和 Blackwell [架构](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 的 GPU 上，高性能 GEMM 内核通常以个位数的百分比占用率运行，因为它们不需要太多的 [线程束](/gpu-glossary/device-software/warp/) 就能使 [张量核心](/gpu-glossary/device-hardware/tensor-core/) 完全饱和。
+特别是，在 Hopper 和 Blackwell [架构](/gpu-glossary/device-hardware/streaming-multiprocessor-architecture/) 的 GPU 上，高性能 GEMM 内核通常以个位数的百分比占用率运行，因为它们不需要太多的 [线程束](/gpu-glossary/device-software/warp/) 就能使 [Tensor Core](/gpu-glossary/device-hardware/tensor-core/) 完全饱和。

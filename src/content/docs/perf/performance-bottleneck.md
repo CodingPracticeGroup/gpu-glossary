@@ -19,13 +19,13 @@ upstream_commit: 9597497a3d8102c9cd17fc35ff06af5d97928275
 
 在 [为 Jane Street 做的这个演讲](https://youtu.be/139UPjoq7Kw?t=1229) 中，Horace He 将在 GPU 上运行的程序 [内核](/gpu-glossary/device-software/kernel/) 所做的工作分解为三类：
 
--   计算（在 [CUDA 核心](/gpu-glossary/device-hardware/cuda-core/) 或 [张量核心](/gpu-glossary/device-hardware/tensor-core/) 上运行浮点运算）
+-   计算（在 [CUDA 核心](/gpu-glossary/device-hardware/cuda-core/) 或 [Tensor Core](/gpu-glossary/device-hardware/tensor-core/) 上运行浮点运算）
 -   内存（在系统的 [内存层次结构](/gpu-glossary/device-software/memory-hierarchy/) 中搬运数据）
 -   开销（其他所有操作）
 
 因此，对于 GPU [内核](/gpu-glossary/device-software/kernel/)，性能瓶颈主要分为三类：
 
--   [计算受限](/gpu-glossary/perf/compute-bound/) [内核](/gpu-glossary/device-software/kernel/)，受限于计算单元（如 [CUDA 核心](/gpu-glossary/device-hardware/cuda-core/) 或 [张量核心](/gpu-glossary/device-hardware/tensor-core/)）的 [算术带宽](/gpu-glossary/perf/arithmetic-bandwidth/)，例如大型矩阵-矩阵乘法，
+-   [计算受限](/gpu-glossary/perf/compute-bound/) [内核](/gpu-glossary/device-software/kernel/)，受限于计算单元（如 [CUDA 核心](/gpu-glossary/device-hardware/cuda-core/) 或 [Tensor Core](/gpu-glossary/device-hardware/tensor-core/)）的 [算术带宽](/gpu-glossary/perf/arithmetic-bandwidth/)，例如大型矩阵-矩阵乘法，
 -   [内存受限](/gpu-glossary/perf/memory-bound/) [内核](/gpu-glossary/device-software/kernel/)，受限于 [内存子系统的带宽](/gpu-glossary/perf/memory-bandwidth/)，例如大型向量-向量乘法，以及
 -   [开销受限](/gpu-glossary/perf/overhead/) [内核](/gpu-glossary/device-software/kernel/)，受限于延迟，例如小型数组操作。
 
